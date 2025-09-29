@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" bs-data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -48,11 +48,60 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
     <meta name="theme-color" content="#ffffff" />
     <script src="{% static 'js/theme-color.js' %}" defer></script>
   </head>
   <body>
-    <!-- Navbar here -->
+    <nav
+      class="navbar navbar-expand-lg border-bottom border-body px-3 navbar-light bg-light"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"
+          ><img
+            src="{% static 'images/navbar-tpusaodu.png' %}"
+            alt="Turning Point USA @ Old Dominion University"
+            id="navbarlogo"
+            style="width: 10dvw"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarMain"
+          aria-controls="navbarMain"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMain">
+          <ul class="me-auto nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link active" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="linktree.html">Linktree</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="book-abbrs.html">Book Abbreviations</a>
+            </li>
+          </ul>
+          <div class="ml-auto">
+            <button id="themeToggle" class="btn btn-outline-secondary">
+              <!-- Default: sun icon (light mode) -->
+              <i class="bi bi-sun-fill" id="iconSun"></i>
+              <i class="bi bi-moon-stars-fill" id="iconMoon"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
     {% block body %}{% endblock %}
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"

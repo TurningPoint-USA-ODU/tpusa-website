@@ -14,6 +14,7 @@ INSTALLED_APPS: list[str] = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "main",
 ]
 
 MIDDLEWARE: list[str] = [
@@ -31,7 +32,7 @@ ROOT_URLCONF: str = "tpusa.urls"
 TEMPLATES: list[Dict[str, Union[str, list[Path], bool, Dict[str, list[str]]]]] = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "tpusa" / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -92,6 +93,8 @@ USE_TZ: bool = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL: str = "static/"
+
+STATICFILES_DIRS: list[Path] = [BASE_DIR / "tpusa" / "static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
