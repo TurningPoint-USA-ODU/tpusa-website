@@ -82,13 +82,39 @@
         <div class="collapse navbar-collapse" id="navbarMain">
           <ul class="me-auto nav nav-pills">
             <li class="nav-item">
-              <a class="nav-link active" href="/">Home</a>
+              <a
+                class="nav-link {% block homeActive %}{% endblock %}"
+                href="{% url 'index' %}"
+                >Home</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="linktree.html">Linktree</a>
+              <a
+                class="nav-link {% block eventsActive %}{% endblock %}"
+                href="{% url 'events' %}"
+                >Events</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="book-abbrs.html">Book Abbreviations</a>
+              <a
+                class="nav-link {% block joinActive %}{% endblock %}"
+                href="{% url 'join' %}"
+                >Join Us</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link {% block leadershipActive %}{% endblock %}"
+                href="{% url 'leadership' %}"
+                >Leadership</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link {% block contactActive %}{% endblock %}"
+                href="{% url 'contact' %}"
+                >Contact Us</a
+              >
             </li>
           </ul>
           <div class="ml-auto">
