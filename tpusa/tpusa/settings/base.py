@@ -1,6 +1,10 @@
 from pathlib import Path
 from typing import Dict, Union
 
+from tpusa.tpusa.settings import get_secret
+
+DEBUG = bool(get_secret("DEBUG", "False"))
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR: Path = Path(__file__).resolve().parent.parent.parent
 
@@ -15,6 +19,7 @@ INSTALLED_APPS: list[str] = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "main",
+    "register",
 ]
 
 MIDDLEWARE: list[str] = [
@@ -46,16 +51,33 @@ TEMPLATES: list[Dict[str, Union[str, list[Path], bool, Dict[str, list[str]]]]] =
 
 WSGI_APPLICATION: str = "tpusa.wsgi.application"
 
+# Password Reset timeout (60 seconds * 10 minutes)
+PASSWORD_RESET_TIMEOUT = 60 * 10
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES: Dict[str, Dict[str, Union[str, Path]]] = {
+DATABASES_PROD: Dict[str, Dict[str, Union[str, Path, int, None]]] = {
+    "default": {
+        "ENGINE": f"django.db.backends.{get_secret("DATABASE_ENGINE", "sqlite3")}",
+        "NAME": get_secret("DATABASE_NAME", "bibleqna"),
+        "USER": get_secret("DATABASE_USERNAME", "admin"),
+        "PASSWORD": get_secret("DATABASE_PASSWORD", "admin"),
+        "HOST": get_secret("DATABASE_HOST", "db"),
+        "PORT": int(get_secret("DATABASE_PORT", 5432)),
+    }
+}
+
+DATABASES_LOCAL: Dict[str, Dict[str, Union[str, Path, int, None]]] = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+DATABASES: Dict[str, Dict[str, Union[str, Path, int, None]]] = (
+    DATABASES_PROD if not DEBUG else DATABASES_LOCAL
+)
 
 
 # Password validation
